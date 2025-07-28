@@ -1,0 +1,45 @@
+services:
+  laravel-db:
+    image: mysql:8.0
+    container_name: laravel-db
+    environment:
+      MYSQL_ROOT_PASSWORD: Admin
+      MYSQL_DATABASE: proyecto
+      MYSQL_USER: Laravel
+      MYSQL_PASSWORD: UserLaravel
+    ports:
+      - "3306:3306"
+    volumes:
+      - db_data:/var/lib/mysql
+    networks:
+      laravel_prod:
+        ipv4_address: 192.168.100.5
+  laravel-prod:
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    container_name: laravel_app  
+    ports:
+      - "8080:80"  # Accede a Laravel desde http://localhost:8080
+    env_file:
+      - .env
+    volumes:
+      - "/home/ubuntu/Laravel-File-Manager:/var/www/html"
+      #- "D:/Backend/Dockerr/Laravel-File-Manager:/var/www/html"
+      #- "./apache/000-default.conf:/etc/apache2/sites-available/000-default.conf"
+    depends_on:
+      - laravel-db
+    networks:
+      laravel_prod:
+        ipv4_address: 192.168.100.6
+volumes:
+  Laravel-File-Manager:
+  db_data:
+
+networks:
+  laravel_prod:
+    driver: bridge
+    ipam:
+      driver: default
+      config:
+        - subnet: 192.168.100.0/24

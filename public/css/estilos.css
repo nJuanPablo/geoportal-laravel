@@ -1,0 +1,211 @@
+html, body {
+  height: 100%;
+  margin: 0;
+  overflow-x: hidden;
+}
+
+.tipografia {
+    font-family: 'Quicksand', sans-serif;
+    font-size: 50px;
+    font-weight: 800;
+    color: #45806c;
+    line-height: 1.6;
+    letter-spacing: 0.5px;
+}
+
+footer {
+  width: 100%;
+  overflow-x: hidden;
+}
+
+.bg-personalizado {
+    background-image: url('/images/Background.png');
+    background-size: cover;
+    background-repeat: no-repeat; /* Evita que se repita */
+    background-position: center;  /* Centra la imagen */
+    height: 100vh;                /* Ocupa el alto completo */
+    margin: 0;
+  }
+
+.bg-personalizadonav {
+    background-image: url('/images/Backgroundnav.jpg');
+    background-size: cover;
+    background-repeat: no-repeat; /* Evita que se repita */
+    background-position: center;  /* Centra la imagen */
+    height: 10vh;                /* Ocupa el alto completo */
+    margin: 0;
+  }  
+
+.dropdown-menu {
+  background-color: #343a40;   /* Fondo oscuro */
+  color: #ffffff;              /* Texto blanco */
+  border: none;
+}
+
+.dropdown-menu .dropdown-item {
+  color: #ffffff;
+}
+
+.dropdown-menu .dropdown-item:hover {
+  background-color: #495057;   /* Hover oscuro */
+  color: #ffffff;
+}
+
+.dropdown-menu {
+  border-radius: 0.4rem;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.25);
+}
+
+.btn-outline-light {
+  color: #ffffff;
+  border-color: #eeebe7;            /* Color del borde normal */
+  transition: background-color 0.2s, color 0.2s, border-color 0.2s;
+}
+
+.btn-outline-light:hover {
+  background-color: #45806c;        /* Color de fondo al hacer hover */
+  color: #000000;                   /* Color del texto al hacer hover */
+  border-color: #45806c;
+}
+
+/* Al hacer clic (activo) */
+.btn-outline-light:focus {
+  background-color: #45806c;
+  color: #ffffff ;
+  border-color: #45806c;
+  box-shadow: none;
+}
+
+.btn-icon i {
+    font-size: 1.5rem;
+    width: 1.5rem;
+    height: 1.5rem;
+    line-height: 1.5rem;
+    text-align: center;
+}
+
+.btn-icon {
+    border-color: #645f5f;
+    border-radius: 20%; /* Hace que el botón sea circular */
+}
+
+.grande {
+    font-size: 3.5rem; /* Aumenta el tamaño de la fuente */
+    padding: 0.5rem 1rem; /* Aumenta el padding */
+    font-weight: bold; /* Hace el texto más grueso */
+}
+
+.dropdown-menu {
+  z-index: 1051 !important; /* Bootstrap dropdown usa 1000-1050 */
+  position: absolute;
+}
+
+.card {
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0px 4px 12px rgba(0,0,0,0.1);
+}
+
+#map {
+  z-index: 0;
+  position: relative;
+  width: 100%;  
+  height: calc(100vh - 35px); /* Ocupa todo el alto de la ventana */
+  
+}
+
+.navbar2 {
+  height: 35px;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  display: flex;
+  align-items: center; /* Centra verticalmente */
+}
+
+.navbar2 .btn {
+  padding: 4px 8px;
+  font-size: 0.85rem;
+  line-height: 1.1;
+}
+
+.navbar-compact {
+  height: 35px;
+  padding: 0 1rem;
+}
+
+.navbar-brand2 {
+  /* line-height: 1; */
+  height: 35px;
+  align-content: center;
+}
+
+.navbar-brand2 i {
+  vertical-align: middle;
+  /* font-size: 1.2rem;  */
+  text-align: center;
+}
+
+.barra-geovisor {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  transform: translateY(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 8px;
+  background-color: rgba(0, 0, 0, 0.7);
+  border-radius: 0 8px 8px 0;
+  z-index: 999; /* Para que esté encima del mapa */
+}
+
+.barra-geovisor .btn {
+  width: 42px;
+  height: 42px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.barra-geovisor .btn:hover {
+  background-color: #f39c12;
+  color: #000;
+}
+
+.panel-wfswms {
+  position: absolute;
+  top: 50%;
+  left: 60px;
+  transform: translateY(-50%);
+  background-color: rgba(0, 0, 0, 0.85);
+  padding: 20px;
+  width: 300px;
+  max-width: 90vw;
+  border-radius: 12px;
+  z-index: 1000;
+  display: none;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+  transition: all 0.3s ease-in-out;
+}
+
+#btn-wfswms:active {
+  transform: scale(0.95);
+}
+
+.mapa-base{
+  position: absolute;
+  top: 50%;
+  left: 60px;
+  transform: translateY(19%);
+  background-color: rgba(0, 0, 0, 0.85);
+  padding: 10px;
+  border-radius: 8px;
+  z-index: 1000;
+  display: none;
+  min-width: 150px;
+}
+
+#menu-mapa-base button {
+  height: 30px;
+  padding: 3px 8px;
+}
