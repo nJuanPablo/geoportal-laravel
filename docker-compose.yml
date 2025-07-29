@@ -1,7 +1,10 @@
+version: "3.8"
+
 services:
   laravel-db:
     image: mysql:8.0
     container_name: laravel-db
+    restart: always
     environment:
       MYSQL_ROOT_PASSWORD: Admin
       MYSQL_DATABASE: proyecto
@@ -12,32 +15,35 @@ services:
     volumes:
       - db_data:/var/lib/mysql
     networks:
-      laravel_prod:
+      laravel_net:
         ipv4_address: 192.168.100.5
-  laravel-prod:
+
+  laravel_app:
     build:
       context: ./
       dockerfile: Dockerfile
-    container_name: laravel_app  
+      args:
+        APP_ENV: ${APP_ENV:-development}  # Default a "development" si no está definido
+    container_name: laravel_app
     ports:
-      - "8080:80"  # Accede a Laravel desde http://localhost:8080
+      - "8080:80"
     env_file:
       - .env
+    environment:
+      - APP_ENV=${APP_ENV:-development}
     volumes:
-      - "/home/ubuntu/Laravel-File-Manager:/var/www/html"
-      #- "D:/Backend/Dockerr/Laravel-File-Manager:/var/www/html"
-      #- "./apache/000-default.conf:/etc/apache2/sites-available/000-default.conf"
+      - "/home/ubuntu/geoportal-laravel:/var/www/html"  # Solo en desarrollo
     depends_on:
       - laravel-db
     networks:
-      laravel_prod:
+      laravel_net:
         ipv4_address: 192.168.100.6
+
 volumes:
-  Laravel-File-Manager:
   db_data:
 
 networks:
-  laravel_prod:
+  laravel_net:
     driver: bridge
     ipam:
       driver: default
