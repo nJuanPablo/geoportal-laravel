@@ -112,11 +112,6 @@ mv .env.example .env
 ```bash
 sudo docker-compose up -d --build
 ```
-5. Abrir el directorio
-```bash
-cd geoportal-laravel
-mv .env.example .env
-```
 6. Correr los comandos de Laravel
 ```bash
 docker exec -it laravel_app composer install
