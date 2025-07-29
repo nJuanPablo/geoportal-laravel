@@ -119,7 +119,7 @@ docker exec -it laravel_app php artisan key:generate
 docker exec -it laravel_app php artisan migrate:fresh --seed
 ```
 
-## 🧱 Error.
+## 🧱 Error
 Se tuvo un error de denegacion de permisos, posiblemente el `chown` puede estar ejecutándose antes de que los archivos estén presentes si los copias después en el `Dockerfile`. Para corregirlo se ejecutaron los siguientes comandos: 
 
 ```bash
