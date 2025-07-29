@@ -22,15 +22,11 @@ services:
     build:
       context: ./
       dockerfile: Dockerfile
-      args:
-        APP_ENV: ${APP_ENV:-development}  # Default a "development" si no está definido
     container_name: laravel_app
     ports:
       - "8080:80"
     env_file:
       - .env
-    environment:
-      - APP_ENV=${APP_ENV:-development}
     volumes:
       - "/home/ubuntu/geoportal-laravel:/var/www/html"  # Solo en desarrollo
     depends_on:
@@ -38,7 +34,6 @@ services:
     networks:
       laravel_net:
         ipv4_address: 192.168.100.6
-
 volumes:
   db_data:
 
