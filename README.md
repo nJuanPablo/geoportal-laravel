@@ -103,14 +103,14 @@ docker-compose -v
 ```bash
 git clone https://github.com/nJuanPablo/geoportal-laravel.git
 ```
-3. Construir los contenedores
-```bash
-sudo docker-compose up -d --build
-```
-4. Abrir el directorio
+3. Abrir el directorio
 ```bash
 cd geoportal-laravel
 mv .env.example .env
+```
+4. Construir los contenedores
+```bash
+sudo docker-compose up -d --build
 ```
 5. Abrir el directorio
 ```bash
