@@ -1,61 +1,166 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# 📁 Geoportal laravel
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+Este proyecto es una aplicación web desarrollada en **Laravel** que permite a los usuarios autenticados realizar la visualizacion de mapas con WFS o WMS. La autenticación está implementada usando **Laravel Sanctum**.
 
-## About Laravel
+---
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+## 🔐 Autenticación
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+La autenticación de usuarios se gestiona mediante **Laravel Sanctum**. Los usuarios pueden:
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+- Registrarse
+- Iniciar sesión
+- Cerrar sesión
 
-## Learning Laravel
+Las vistas relacionadas están ubicadas en la carpeta `views/auth`.
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+---
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+## 🖼️ Estructura de Vistas
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+Las vistas se encuentran en `resources/views/` y están organizadas de la siguiente manera:
 
-## Laravel Sponsors
+- `auth/`
+  - `login.blade.php`: Formulario de inicio de sesión
+  - `register.blade.php`: Formulario de registro
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+- `layouts/`
+  - `app.blade.php`: Plantilla principal que envuelve las vistas
+  - `alerts.blade.php`: Vista parcial para mostrar mensajes de alerta
 
-### Premium Partners
+- `geovisor.blade.php`: Página principal donde se muestra el mapa cargado con Leaflet.
 
-- **[Vehikl](https://vehikl.com)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Redberry](https://redberry.international/laravel-development)**
-- **[Active Logic](https://activelogic.com)**
+---
 
-## Contributing
+## 🧠 Controladores
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+Los controladores principales se encuentran en `app/Http/Controllers/`:
 
-## Code of Conduct
+- `GeovisorController`: Carga la vista principal y estructura de carpetas.
+- `RegistroController`: Controla el registro de usuarios.
+- `LoginController`: Maneja el inicio de sesión.
+- `LogoutController`: Maneja el cierre de sesión.
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+---
 
-## Security Vulnerabilities
+## 🛠 Funcionalidades
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+- ✅ Registro e inicio de sesión (con Laravel Sanctum)
+- ✅ Se pueden cargar capas en formato WFS y WMS
+- ✅ Tiene un boton para ver las capas activas
+- ✅ Tiene un boton para centrar el mapa en Colombia
+- ✅ Tiene un boton para cargar el mapa base deseado
 
-## License
+---
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+## ⚙️ Requisitos
+
+- PHP >= 8.1
+- Laravel 10+
+- Composer
+- MySQL
+
+---
+
+## 🚀 Instalación
+1. Clona el repositorio:
+```bash
+git clone https://github.com/nJuanPablo/geoportal-laravel.git
+```
+2. Instala las dependencias:
+```bash
+composer install
+npm install
+```
+3. Cree el archivo de entorno:
+```bash
+cp .env.example .env
+php artisan key:generate
+```
+4. Configura la base de datos en .env.
+5. Ejecuta las migraciones:
+```bash
+php artisan migrate:fresh --seed
+```
+6. Inicia el servidor:
+```bash
+php artisan serve
+```
+
+## 📂 Para subir la pagina a un hosting con Ubuntu
+
+Tener en cuenta que se debe tener el puerto habilitado 8080
+
+1. Instalar Docker:
+```bash
+sudo apt update
+sudo apt install docker.io
+sudo apt install docker-compose
+docker -v
+docker-compose -v
+```
+2. Copiar el directorio:
+```bash
+git clone https://github.com/nJuanPablo/geoportal-laravel.git
+```
+3. Construir los contenedores
+```bash
+sudo docker-compose up -d --build
+```
+4. Abrir el directorio
+```bash
+cd geoportal-laravel
+mv .env.example .env
+```
+5. Abrir el directorio
+```bash
+cd geoportal-laravel
+mv .env.example .env
+```
+6. Correr los comandos de Laravel
+```bash
+docker exec -it laravel_app composer install
+docker exec -it laravel_app php artisan key:generate
+docker exec -it laravel_app php artisan migrate:fresh --seed
+```
+
+🧱 Error
+Se tuvo un error de denegacion de permisos, posiblmente el `chown` puede estar ejecutándose antes de que los archivos estén presentes si los copias después en el `Dockerfile`. Para corregirlo se ejecutaron los siguientes comandos: 
+
+```bash
+docker exec -it laravel_app bash
+chown -R www-data:www-data /var/www/html/storage
+chmod -R 775 /var/www/html/storage
+```
+
+
+## ✍️ Usuarios de prueba 
+* Username: JuanPablo - password: N4v13mbr3123*-*
+* Username: JQuintero - password: ba2E46C7wn6K
+* Username: JAyala - password: Y3Fu6J1KNI4E
+* Username: AGalindo - password: YLP92Ia5M7uH
+
+## ✍️ Autor
+Juan Pablo Navarro Cabiativa
+
+## 📄 Licencia
+
+Copyright (c) 2025 Juan Pablo Navarro Cabiativa
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights  
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell      
+copies of the Software, and to permit persons to whom the Software is         
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in     
+all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR     
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,      
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE   
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER        
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING       
+FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS  
+IN THE SOFTWARE.
